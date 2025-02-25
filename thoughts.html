@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>说说 | Jockiery的知识花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .thoughts-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .thoughts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .thought-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .thought-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+
+
+        .thought-content {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+
+        .thought-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .thought-time {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .thought-time::before {
+            content: '🕒';
+            font-size: 1rem;
+        }
+
+        .thought-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .thought-tag {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .thought-tag:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .post-thought {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border: 1px solid #f0f0f0;
+        }
+
+        .post-thought-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .post-thought-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .post-thought-button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-thought-button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .post-thought-button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 8rem;
+            }
+
+            .thought-item {
+                padding: 1.5rem;
+            }
+
+            .thought-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Jockiery</a>
+            <div class="nav-links">
+                <a href="index.html">主页</a>
+                <a href="articles.html">文章</a>
+                <a href="photos.html">摄影</a>
+                <a href="thoughts.html">说说</a>
+                <a href="garden.html">花园</a>
+                <a href="about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="thoughts-section">
+            <h2 class="section-title">我的说说</h2>
+            <div id="loginSection" style="display: none;" class="post-thought">
+                <input type="text" id="username" placeholder="用户名" class="post-thought-textarea" style="min-height: 40px; margin-bottom: 10px;">
+                <input type="password" id="password" placeholder="密码" class="post-thought-textarea" style="min-height: 40px;">
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="post-thought-button" id="loginButton">登录</button>
+                    <button class="post-thought-button" id="registerButton" style="background: #64748b;">注册</button>
+                </div>
+            </div>
+            <div id="postSection" class="post-thought">
+                <textarea class="post-thought-textarea" id="thoughtContent" placeholder="写点什么吧..."></textarea>
+                <button class="post-thought-button" id="postThoughtButton">发布</button>
+            </div>
+            <div class="thoughts-container" id="thoughtsContainer">
+                <!-- 说说内容将通过JavaScript动态加载 -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <section class="section" style="background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; transition: all 0.3s ease; margin-bottom: 2rem;">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-list" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:contact@example.com" class="contact-item" style="text-decoration: none; color: #666; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease;">
+                    <span class="contact-icon" style="font-size: 1.5rem;">📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="https://github.com/username" class="contact-item" target="_blank" style="text-decoration: none; color: #666; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease;">
+                    <span class="contact-icon" style="font-size: 1.5rem;">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://twitter.com/username" class="contact-item" target="_blank" style="text-decoration: none; color: #666; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease;">
+                    <span class="contact-icon" style="font-size: 1.5rem;">🐦</span>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </section>
+        <p>© 2025 Jockiery的知识花园 | 用简单的方式，过有趣的生活</p>
+    </footer>
+
+    <script>   
+        // 定义API地址
+        const API_URL = 'http://localhost:3000';
+
+        // 获取认证令牌
+        function getAuthToken() {
+            return localStorage.getItem('token');
+        }
+
+        // 检查登录状态
+        function checkLoginStatus() {
+            const token = getAuthToken();
+            const loginSection = document.getElementById('loginSection');
+            const postSection = document.getElementById('postSection');
+            
+            if (token) {
+                loginSection.style.display = 'none';
+                postSection.style.display = 'block';
+            } else {
+                loginSection.style.display = 'block';
+                postSection.style.display = 'none';
+            }
+        }
+
+        // 用户登录
+        async function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                alert('请输入用户名和密码');
+                return;
+            }
+
+            try {
+                if (!navigator.onLine) {
+                    throw new Error('网络连接失败，请检查网络设置');
+                }
+
+                const response = await fetch(`${API_URL}/api/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('username', username);
+                    checkLoginStatus();
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                } else {
+                    throw new Error(data.message || '登录失败，用户名或密码错误');
+                }
+            } catch (error) {
+                console.error('登录失败:', error);
+                alert(error.message || '登录过程中出现错误，请稍后重试');
+            }
+        }
+
+        // 用户注册
+        async function register() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                alert('请输入用户名和密码');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/api/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('注册成功，请登录');
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                } else {
+                    alert(data.message || '注册失败');
+                }
+            } catch (error) {
+                console.error('注册失败:', error);
+                alert('注册失败，请稍后重试');
+            }
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            if (days === 0) {
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                if (hours === 0) {
+                    const minutes = Math.floor(diff / (1000 * 60));
+                    if (minutes === 0) {
+                        return '刚刚';
+                    }
+                    return `${minutes}分钟前`;
+                }
+                return `${hours}小时前`;
+            } else if (days < 7) {
+                return `${days}天前`;
+            } else {
+                return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+            }
+        }
+
+        // 加载说说
+        async function loadThoughts() {
+            try {
+                const response = await fetch(`${API_URL}/api/thoughts`);
+                const thoughts = await response.json();
+
+                if (thoughts.length === 0) {
+                    thoughtsContainer.innerHTML = `
+                        <div class="empty-message">
+                            暂时还没有说说内容
+                        </div>
+                    `;
+                    return;
+                }
+
+                // 按时间降序排序
+                thoughts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                thoughtsContainer.innerHTML = thoughts.map(thought => `
+                    <div class="thought-item">
+    
+                        <p class="thought-content">${thought.content}</p>
+                        <div class="thought-footer">
+                            <span class="thought-time">${formatDate(thought.createdAt)}</span>
+                            <div class="thought-tags">
+                                ${thought.tags ? thought.tags.map(tag => `
+                                    <span class="thought-tag">${tag}</span>
+                                `).join('') : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('加载说说失败:', error);
+                thoughtsContainer.innerHTML = `
+                    <div class="empty-message">
+                        加载说说失败，请稍后重试
+                    </div>
+                `;
+            }
+        }
+
+        // 发布说说
+        async function postThought() {
+            const content = document.getElementById('thoughtContent').value.trim();
+            const button = document.getElementById('postThoughtButton');
+            
+            if (!content) {
+                alert('请输入说说内容');
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = '发布中...';
+
+            try {
+                const token = getAuthToken();
+                if (!token) {
+                    throw new Error('请先登录');
+                }
+
+                const response = await fetch(`${API_URL}/api/thoughts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        content,
+                        createdAt: new Date().toISOString()
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('发布失败');
+                }
+
+                document.getElementById('thoughtContent').value = '';
+                await loadThoughts();
+            } catch (error) {
+                console.error('发布说说失败:', error);
+                alert('发布失败，请稍后重试');
+            } finally {
+                button.disabled = false;
+                button.textContent = '发布';
+            }
+        }
+
+        // 绑定按钮事件
+        document.getElementById('postThoughtButton').addEventListener('click', postThought);
+        document.getElementById('loginButton').addEventListener('click', login);
+        document.getElementById('registerButton').addEventListener('click', register);
+
+        // 页面加载时检查登录状态并获取说说
+        checkLoginStatus();
+        loadThoughts();
+    </script>
+</body>
+</html>

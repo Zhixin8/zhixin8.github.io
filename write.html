@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写文章 | Jockiery的知识花园</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <script src="js/main.js" defer></script>
+    </head>
+    <body>
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="logo">Jockiery</a>
+                <div class="nav-links">
+                    <a href="index.html">主页</a>
+                    <a href="articles.html">文章</a>
+                    <a href="photos.html">摄影</a>
+                    <a href="thoughts.html">说说</a>
+                    <a href="garden.html">花园</a>
+                    <a href="about.html">关于</a>
+                </div>
+            </div>
+        </nav>
+
+    <main class="main-content">
+        <section class="editor-section">
+            <input type="text" class="editor-title" id="articleTitle" placeholder="输入文章标题...">
+            <div class="editor-toolbar">
+                <button class="toolbar-button" data-command="bold" title="加粗"><i>B</i></button>
+                <button class="toolbar-button" data-command="italic" title="斜体"><i>I</i></button>
+                <button class="toolbar-button" data-command="underline" title="下划线"><i>U</i></button>
+                <button class="toolbar-button" data-command="h2" title="二级标题">H2</button>
+                <button class="toolbar-button" data-command="h3" title="三级标题">H3</button>
+                <button class="toolbar-button" data-command="insertOrderedList" title="有序列表">1.</button>
+                <button class="toolbar-button" data-command="insertUnorderedList" title="无序列表">•</button>
+                <button class="toolbar-button" data-command="insertImage" title="插入图片">📷</button>
+                <button class="toolbar-button" data-command="createLink" title="插入链接">🔗</button>
+                <button class="toolbar-button" data-command="attachment" title="插入附件">📎</button>
+            </div>
+            <div class="editor-content" id="articleContent" contenteditable="true" placeholder="开始写作..."></div>
+            <input type="file" id="fileUpload" class="file-upload" multiple>
+            <div class="upload-progress">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+            <div class="editor-footer">
+                <button class="draft-button" id="saveDraft">保存草稿</button>
+                <button class="publish-button" id="publishArticle">发布文章</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 个人空间. All rights reserved.</p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+</html>

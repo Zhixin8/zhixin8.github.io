@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摄像照片 | Jockiery的知识花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            background-color: #f0f0f0;
+        }
+
+        .photo-card img::before {
+            content: "加载中...";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            color: #666;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .contact-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #333;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 8rem;
+            }
+
+            .photos-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Jockiery</a>
+            <div class="nav-links">
+                <a href="index.html">主页</a>
+                <a href="articles.html">文章</a>
+                <a href="photos.html">摄像</a>
+                <a href="thoughts.html">说说</a>
+                <a href="garden.html">花园</a>
+                <a href="about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="photos-grid">
+            <div class="photo-card">
+                <img src="images/nature.jpg" alt="自然风光" loading="lazy">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">自然之美</h3>
+                    <p class="photo-description">大自然的鬼斧神工，展现出令人惊叹的美景。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/city.jpg" alt="城市风光" loading="lazy">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">都市印象</h3>
+                    <p class="photo-description">现代都市的繁华与活力，记录城市的脉动。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/construct.jpg" alt="建筑艺术">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">建筑之美</h3>
+                    <p class="photo-description">人类智慧的结晶，展现建筑艺术的独特魅力。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/culture.jpg" alt="人文纪实">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">人文瞬间</h3>
+                    <p class="photo-description">捕捉生活中的精彩瞬间，记录平凡中的感动。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/food.jpg" alt="美食记录">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">美食记忆</h3>
+                    <p class="photo-description">舌尖上的艺术，分享美食带来的快乐。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/travel.jpg" alt="旅行见闻">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">旅行足迹</h3>
+                    <p class="photo-description">在路上的故事，记录旅途中的精彩。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/animal.jpg" alt="动物世界">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">生灵之美</h3>
+                    <p class="photo-description">自然界的精灵，展现生命的多样性。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/art.jpg"" alt="艺术创作">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">艺术之光</h3>
+                    <p class="photo-description">艺术的无限可能，探索创意的边界。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/technology.jpg" alt="科技生活">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">科技之美</h3>
+                    <p class="photo-description">现代科技的魅力，展现未来的无限可能。</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="images/landscape.jpg"  alt="风景如画">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">山水如画</h3>
+                    <p class="photo-description">大自然的壮丽画卷，展现天地之美。</p>
+                </div>
+            </div>
+        </div>
+
+       
+    </main>
+
+    <footer class="footer">
+        <section class="section">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-list">
+                <a href="mailto:contact@example.com" class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="https://github.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://twitter.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">🐦</span>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </section>
+        <p>© 2025 Jockiery的知识花园 | 用简单的方式，过有趣的生活</p>
+    </footer>
+</body>
+</html>

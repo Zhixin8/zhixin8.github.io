@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花园 | Jockiery的知识花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .garden-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .garden-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .garden-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .garden-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .garden-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .garden-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .garden-card .tag {
+            background: #f0f0f0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .garden-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .garden-intro h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .garden-intro p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .contact-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #333;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 8rem;
+            }
+
+            .garden-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Jockiery</a>
+            <div class="nav-links">
+                <a href="index.html">主页</a>
+                <a href="articles.html">文章</a>
+                <a href="photos.html">摄影</a>
+                <a href="thoughts.html">说说</a>
+                <a href="garden.html">花园</a>
+                <a href="about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="garden-intro">
+            <h2>我的花园</h2>
+            <p>这里是我的知识生长地，记录学习、思考和创造的过程。像园丁一样培育思想，让知识在这里生根发芽、开花结果。</p>
+        </div>
+
+        <div class="garden-grid">
+            <div class="garden-card">
+                <h3>编程技术</h3>
+                <p>探索软件开发的世界，分享编程心得和技术见解。</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Web开发</span>
+                </div>
+            </div>
+            <div class="garden-card">
+                <h3>读书笔记</h3>
+                <p>记录阅读心得，分享书中的智慧与感悟。</p>
+                <div class="tags">
+                    <span class="tag">文学</span>
+                    <span class="tag">哲学</span>
+                    <span class="tag">科技</span>
+                </div>
+            </div>
+            <div class="garden-card">
+                <h3>生活随笔</h3>
+                <p>记录日常生活中的思考和感悟，分享生活的点滴。</p>
+                <div class="tags">
+                    <span class="tag">随笔</span>
+                    <span class="tag">生活</span>
+                    <span class="tag">感悟</span>
+                </div>
+            </div>
+            <div class="garden-card">
+                <h3>学习笔记</h3>
+                <p>整理各类学习资料和笔记，构建知识体系。</p>
+                <div class="tags">
+                    <span class="tag">笔记</span>
+                    <span class="tag">知识管理</span>
+                    <span class="tag">学习方法</span>
+                </div>
+            </div>
+            <div class="garden-card">
+                <h3>项目展示</h3>
+                <p>展示个人项目作品，分享创作过程和经验。</p>
+                <div class="tags">
+                    <span class="tag">项目</span>
+                    <span class="tag">作品集</span>
+                    <span class="tag">创作</span>
+                </div>
+            </div>
+            <div class="garden-card">
+                <h3>思维导图</h3>
+                <p>用思维导图整理知识体系，梳理思维脉络。</p>
+                <div class="tags">
+                    <span class="tag">思维导图</span>
+                    <span class="tag">知识整理</span>
+                    <span class="tag">学习工具</span>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+    <footer class="footer">
+        <section class="section">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-list">
+                <a href="mailto:contact@example.com" class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="https://github.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://twitter.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">🐦</span>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </section>
+        <p>© 2025 Jockiery的知识花园 | 用简单的方式，过有趣的生活</p>
+    </footer>
+</body>
+</html>

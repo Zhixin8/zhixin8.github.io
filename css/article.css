@@ -1,0 +1,63 @@
+/* 文章页面样式 */
+.article {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.article-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.article-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.article-meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #333;
+}
+
+.article-content h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    color: #333;
+}
+
+.article-content ul, .article-content ol {
+    margin: 1rem 0 1.5rem 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 1.8rem;
+    }
+    
+    .article-content {
+        font-size: 1rem;
+    }
+}

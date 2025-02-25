@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jockiery  | 探索·思考·分享</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .login-btn {
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 0.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .site-intro {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .site-intro h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .site-intro p {
+            font-size: 1.4rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .article-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-meta {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .thoughts-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .thought-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .thought-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .thought-content {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .thought-time {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .interest-item {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .interest-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .interest-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .interest-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .interest-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #000;
+        }
+
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 8rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Jockiery</a>
+            <div class="nav-links">
+                <a href="index.html">主页</a>
+                <a href="articles.html">文章</a>
+                <a href="photos.html">摄像照片</a>
+                <a href="thoughts.html">说说</a>
+                <a href="garden.html">数字花园</a>
+                <a href="about.html">关于</a>
+                <button id="loginBtn" class="login-btn">登录</button>
+            </div>
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>登录</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">登录</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section site-intro">
+            <h1>探索·思考·分享</h1>
+            <p>大道至简，万物皆空。物我两忘，心归本真。</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">精选文章</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title"><a href="articles/minimalist-life.html" style="text-decoration: none; color: inherit;">极简主义生活的实践之路</a></h3>
+                        <p class="article-excerpt">如何通过极简主义理念，让生活变得变得更加轻盈自在...</p>
+                        <div class="article-meta">2024-01-15</div>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title"><a href="articles/urban-cycling.html" style="text-decoration: none; color: inherit;">城市骑行指南</a></h3>
+                        <p class="article-excerpt">探索城市角落的最佳方式，让骑行成为生活方式...</p>
+                        <div class="article-meta">2024-01-10</div>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-content">
+                        <h3 class="article-title"><a href="articles/digital-focus.html" style="text-decoration: none; color: inherit;">数字时代的专注力</a></h3>
+                        <p class="article-excerpt">在信息爆炸的时代，如何保持专注和效率...</p>
+                        <div class="article-meta">2024-01-05</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">最新说说</h2>
+            <ul class="thoughts-list">
+                <li class="thought-item">
+                    <p class="thought-content">今天又发现了一个被遗忘的小巷，墙上的涂鸦很有意思。城市总是充满惊喜。</p>
+                    <span class="thought-time">2024-01-20 15:30</span>
+                </li>
+                <li class="thought-item">
+                    <p class="thought-content">整理书架时翻到大学时的笔记，那些潦草的字迹里藏着青春的回忆。</p>
+                    <span class="thought-time">2024-01-19 20:15</span>
+                </li>
+                <li class="thought-item">
+                    <p class="thought-content">清晨的第一缕阳光，配上一杯热咖啡，世界突然变得温柔起来。</p>
+                    <span class="thought-time">2024-01-18 08:45</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">我的兴趣</h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <div class="interest-icon">📱</div>
+                    <h3 class="interest-title">数码控</h3>
+                    <p class="interest-desc">热爱尝试各种新科技，但始终保持克制。</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🎬</div>
+                    <h3 class="interest-title">影视发烧友</h3>
+                    <p class="interest-desc">总是能从电影中发现不一样的视角。</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🚴</div>
+                    <h3 class="interest-title">骑行爱好者</h3>
+                    <p class="interest-desc">用两个轮子探索城市的每个角落。</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🧠</div>
+                    <h3 class="interest-title">心理研究者</h3>
+                    <p class="interest-desc">探索人类行为背后的奥秘。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-list">
+                <a href="mailto:contact@example.com" class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="https://github.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://twitter.com/username" class="contact-item" target="_blank">
+                    <span class="contact-icon">🐦</span>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 Jockiery的知识花园 | 用简单的方式，过有趣的生活</p>
+    </footer>
+    <script src="js/auth.js"></script>
+</body>
+</html>

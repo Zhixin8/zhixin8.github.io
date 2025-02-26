@@ -1,5 +1,5 @@
 // API地址配置
-const API_URL = 'http://localhost:3000';
+const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}:3000`;
 
 // 获取DOM元素
 const thoughtsContainer = document.querySelector('.thoughts-container');
